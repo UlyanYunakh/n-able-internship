@@ -9,13 +9,22 @@ class IVectorFormatter
 public:
     virtual std::vector<T> ToSqureElements(std::vector<T> const &vector) const = 0;
     virtual std::vector<T> ToOnlyEvenNumbers(std::vector<T> const &vector) const = 0;
-    virtual T Summarize(std::vector<T> const &vector) const = 0;
 
     virtual ~IVectorFormatter() = default;
 };
 
 template <typename T>
-class VectorFormatter : public IVectorFormatter<T>
+class IVectorHelper
+{
+public:
+    virtual T Summarize(std::vector<T> const &vector) const = 0;
+    virtual void VectorPrint(std::vector<T> const &vector) const = 0;
+
+    virtual ~IVectorHelper() = default;
+};
+
+template <typename T>
+class VectorUtilities : public IVectorFormatter<T>, public IVectorHelper<T>
 {
 public:
     std::vector<T> ToSqureElements(std::vector<T> const &vector) const override
@@ -53,31 +62,32 @@ public:
 
         return result.sum;
     }
-};
 
-template <typename T>
-void VectorPrint(std::vector<T> const &vector)
-{
-    for (size_t i = 0; i < vector.size(); i++)
+    void VectorPrint(std::vector<T> const &vector) const override
     {
-        std::cout << vector[i] << " ";
+        for (size_t i = 0; i < vector.size(); i++)
+        {
+            std::cout << vector[i] << " ";
+        }
+        std::cout << std::endl;
     }
-    std::cout << std::endl;
-}
+};
 
 int main()
 {
-    std::unique_ptr<IVectorFormatter<int>> formatter = std::make_unique<VectorFormatter<int>>();
-    
+    auto utilities = std::make_unique<VectorUtilities<int>>();
+    IVectorFormatter<int> const& formatter = *utilities;
+    IVectorHelper <int> const& helper = *utilities;
+
     std::vector<int> vector = {4, 5, 15, 37, 103, 8, 9};
-    VectorPrint(vector);
+    helper.VectorPrint(vector);
 
-    vector = formatter->ToSqureElements(vector);
-    VectorPrint(vector);
+    vector = formatter.ToSqureElements(vector);
+    helper.VectorPrint(vector);
 
-    vector = formatter->ToOnlyEvenNumbers(vector);
-    VectorPrint(vector);
+    vector = formatter.ToOnlyEvenNumbers(vector);
+    helper.VectorPrint(vector);
 
-    std::cout << formatter->Summarize(vector) << std::endl;
+    std::cout << helper.Summarize(vector) << std::endl;
     return 0;
 }
