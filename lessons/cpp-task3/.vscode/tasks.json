@@ -1,0 +1,34 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ сборка активного файла",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "${workspaceFolder}/main.cpp",
+                "-o",
+                "${workspaceFolder}/main",
+                "-I",
+                "${workspaceFolder}/Header Files",
+                "${workspaceFolder}/Source Files/Dictionary.cpp",
+                "${workspaceFolder}/Source Files/StringHelper.cpp",
+                "${workspaceFolder}/Source Files/DictionaryHandler.cpp",
+                "-lpthread"
+                
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Задача создана отладчиком."
+        }
+    ],
+    "version": "2.0.0"
+}
