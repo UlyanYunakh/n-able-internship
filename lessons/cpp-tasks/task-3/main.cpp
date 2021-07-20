@@ -7,7 +7,7 @@
 
 int main()
 {
-    auto handler = std::make_shared<DictionaryHandler>();
+    auto handler = std::make_unique<DictionaryHandler>();
 
     std::vector<std::string> pathes = {"/home/ulyan/Cpp/console/file1.txt",
                                        "/home/ulyan/Cpp/console/file2.txt",
