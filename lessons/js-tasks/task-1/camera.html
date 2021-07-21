@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <style>
+        .page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .camera_window {
+            width: 500px;
+            height: 400px;
+            background-color: rgb(192, 178, 178);
+            border: 2px solid rgb(0, 0, 0);
+        }
+
+        .camera_button {
+            margin-top: 20px;
+            padding: 5px 15px;
+        }
+    </style>
+
+    <div class="page">
+        <div class="camera_window">
+            <video id="camera_window"></video>
+        </div>
+        <button class="camera_button" type="button" onclick="StartVideo()">Start</button>
+    </div>
+
+    <script>
+        function StartVideo() {
+            navigator.mediaDevices.getUserMedia({ video: { width: 500, height: 400 }, audio: false })
+                .then(function (stream) {
+                    document.getElementById('camera_window').srcObject = stream;
+                    document.getElementById('camera_window').play();
+                });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <style>
+        .page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .box {
+            margin-top: 200px;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            transform-origin: bottom center 0;
+            transform-style: preserve-3d;
+            transform: rotateY(0deg) rotateX(-45deg);
+        }
+
+        .box_front {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+        }
+
+        .box_right {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 50px;
+            transform: rotateY(90deg) translate(50px, 0);
+            background-color: yellow;
+        }
+
+        .box_top {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+            transform: rotateX(90deg) translate(0, -50px);
+            background-color: pink;
+        }
+
+        .box_left {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            right: 50px;
+            transform: rotateY(90deg) translate(50px, 0);
+            background-color: blue;
+        }
+
+        .box_back {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translateZ(-100px);
+            background-color: orange;
+        }
+
+        .box_bottom {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            transform: rotateX(90deg) translate(0, -50px);
+            background-color: green;
+        }
+    </style>
+
+    <div class="page">
+        <div class="box">
+            <div class="box_front"></div>
+            <div class="box_right"></div>
+            <div class="box_top"></div>
+            <div class="box_left"></div>
+            <div class="box_back"></div>
+            <div class="box_bottom"></div>
+        </div>
+        <div class="box-control">
+            <input type="range" id="rangeY" value="0" oninput="changeYRotation(this.value)">
+        </div>
+    </div>
+
+    <script>
+        let boxElement = document.getElementsByClassName("box").item(0);
+        
+        function changeYRotation(value){
+            boxElement.style.transform = "rotateY(" + value * 3.6 + "deg) rotateX(-45deg)";
+        }
+    </script>
+</body>
+
+</html>

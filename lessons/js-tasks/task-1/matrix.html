@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Check console log!  </h1>
+
+    <script>
+        const matrix = [[1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13], [14, 15, 16, 17]];
+        const rows = [...getRow(matrix, 1)];
+        const cols = [...getColumn(matrix, 1)];
+
+        console.log(rows);
+        console.log(cols);
+
+
+        function getRow(matrix, rowIndex) {
+            return matrix[rowIndex];
+        }
+        
+        function getColumn(matrix, columnIndex) {
+            let column = [];
+            for (let rowIndex in matrix) {
+                column.push(matrix[rowIndex][columnIndex]);
+            }
+            return column;
+        }
+    </script>
+</body>
+
+</html>
