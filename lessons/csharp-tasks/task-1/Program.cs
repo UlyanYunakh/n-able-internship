@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using task_1.StudentSatistics;
+using task_1.StudentStatistics;
 
 namespace task_1
 {

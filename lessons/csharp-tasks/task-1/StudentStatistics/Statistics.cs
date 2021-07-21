@@ -1,4 +1,4 @@
-namespace task_1.StudentSatistics
+namespace task_1.StudentStatistics
 {
     public static class Statistics
     {
