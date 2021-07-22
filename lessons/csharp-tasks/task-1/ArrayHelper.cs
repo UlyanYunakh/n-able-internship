@@ -4,7 +4,7 @@ namespace task_1
 {
     public static class ArrayHelper
     {
-        public static void FormatArray<T>(ref T[] array, Func<T, T> formattingFunc)
+        public static void FormatArray<T>(T[] array, Func<T, T> formattingFunc)
         {
             for (int i = 0; i < array.Length; i++)
                 array[i] = formattingFunc(array[i]);

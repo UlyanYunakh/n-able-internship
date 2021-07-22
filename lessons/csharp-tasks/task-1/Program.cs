@@ -35,7 +35,7 @@ namespace task_1
             }
             Console.WriteLine(intStr);
 
-            ArrayHelper.FormatArray<int>(ref intArray, (int item) => item + 10);
+            ArrayHelper.FormatArray<int>(intArray, (int item) => item + 10);
 
             intStr = "Formatted array: ";
             foreach (var item in intArray)
