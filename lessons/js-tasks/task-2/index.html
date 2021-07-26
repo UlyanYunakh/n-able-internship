@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>task-2</title>
+</head>
+
+<body>
+    <style>
+        .field {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 500px;
+            margin: auto;
+        }
+
+        .card {
+            position: relative;
+            background-color: aquamarine;
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+            color: brown;
+            font-size: 90px;
+            text-align: center;
+            border-radius: 20%;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .card__back {
+            width: inherit;
+            height: inherit;
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+        }
+
+        .card:hover {
+            cursor: pointer;
+        }
+
+        .card_opened {
+            transform: rotateY(180deg);
+        }
+    </style>
+
+    <div id="field" class="field">
+    </div>
+
+    <script>
+        let alphabet = "AERCGHYTRCGAETYH";
+        let cardCount = 16;
+        let array = new Array(cardCount);
+        let clickCount = 0;
+        let firstCard;
+        let secondCard;
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            let index = 0;
+            while (index < cardCount) {
+                let card = document.createElement('div');
+                card.className = "card";
+                
+                let cardFace = document.createElement('div');
+                cardFace.className = "card__face";
+                cardFace.textContent = "$";
+                cardFace.onclick = (event) => open(event);
+                
+                let cardBack = document.createElement('div');
+                cardBack.className = "card__back";
+                cardBack.textContent = alphabet.charAt(index);
+                
+                card.appendChild(cardFace);
+                card.appendChild(cardBack);
+                document.getElementById("field").appendChild(card);
+                index++;
+            }
+        });
+
+        function open(event) {
+            console.log(clickCount);
+            if (clickCount == 0) {
+                firstCard = event.target.parentElement;
+                firstCard.classList = "card card_opened";
+                clickCount++;
+                return;
+            }
+            else if (clickCount == 1) {
+                secondCard = event.target.parentElement;
+                secondCard.classList = "card card_opened";
+                clickCount++;
+                setTimeout(function () {
+                    let firstContent = firstCard.getElementsByClassName("card__back")[0].textContent;
+                    let secondContent = secondCard.getElementsByClassName("card__back")[0].textContent;
+                    if (firstContent !== secondContent) {
+                        firstCard.classList = "card";
+                        secondCard.classList = "card";
+                    }
+                    clickCount = 0;
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+
+</html>
